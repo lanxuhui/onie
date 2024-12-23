@@ -138,6 +138,7 @@
     { "Vendor": "asterfusion", "Platform": "asterfusion_cx564p_n",       "BuildEnv": "Debian10", "Release": "2023.05br", "Architecture": "amd64",   "Notes": "No notes." },
     { "Vendor": "asterfusion", "Platform": "asterfusion_cx664d_n",       "BuildEnv": "Debian10", "Release": "2023.05br", "Architecture": "amd64",   "Notes": "No notes." },
     { "Vendor": "asterfusion", "Platform": "asterfusion_cx732q_n",       "BuildEnv": "Debian10", "Release": "2023.05br", "Architecture": "amd64",   "Notes": "No notes." },
+    { "Vendor": "asterfusion", "Platform": "asterfusion_cx864e_n",       "BuildEnv": "Debian10", "Release": "2023.08br", "Architecture": "amd64",   "Notes": "No notes." },
 
     { "Vendor": "celestica", "Platform": "cel_bigstone_g",    "BuildEnv": "Debian9",  "Release": "2020.05br", "Architecture": "amd64",   "Notes": "No notes." },
     { "Vendor": "celestica", "Platform": "cel_d2030",         "BuildEnv": "Debian9",  "Release": "None",      "Architecture": "PowerPC", "Notes": "Final image size exceeds maximum." },
