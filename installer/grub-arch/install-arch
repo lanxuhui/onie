@@ -1004,7 +1004,8 @@ install_image()
     fi
 
     # update sys_eeprom
-    update_syseeprom
+    #disable the operation related to eeprom, not support related driver in ONIE, commented by Asterfusion
+    #update_syseeprom
 	
     # Set root account password:
 	# if Secure Boot Extended is active and it is a UEFI system.
