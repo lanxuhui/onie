@@ -1,0 +1,108 @@
+From 0138f8c9c8ce15794c592ac2b472bb9e309f6908 Mon Sep 17 00:00:00 2001
+From: wangshengjun <wangshengjun@asterfusion.com>
+Date: Tue, 16 Sep 2025 13:36:38 +0800
+Subject: [PATCH] [Grub]only some specific key combination can interrupt the
+ progress of autoboot(countdown).(Fix #AS-8067)
+
+Signed-off-by: wangshengjun <wangshengjun@asterfusion.com>
+---
+ grub-core/normal/menu.c | 43 ++++++++++++++++++++++++++++++++++-------
+ 1 file changed, 36 insertions(+), 7 deletions(-)
+
+diff --git a/grub-core/normal/menu.c b/grub-core/normal/menu.c
+index 42c8229..c2fd2f2 100644
+--- a/grub-core/normal/menu.c
++++ b/grub-core/normal/menu.c
+@@ -744,25 +744,30 @@ run_menu (grub_menu_t menu, int nested, int *auto_boot)
+       /* Negative values are returned on error. */
+       if ((c != GRUB_TERM_NO_KEY) && (c > 0))
+ 	{
+-	  if (timeout >= 0)
+-	    {
+-	      grub_env_unset ("timeout");
+-	      grub_env_unset ("fallback");
+-	      clear_timeout ();
+-	    }
+-
+ 	  switch (c)
+ 	    {
+ 	    case GRUB_TERM_KEY_HOME:
+ 	    case GRUB_TERM_CTRL | 'a':
+ 	      current_entry = 0;
+ 	      menu_set_chosen_entry (current_entry);
++        if (timeout >= 0)
++        {
++          grub_env_unset ("timeout");
++          grub_env_unset ("fallback");
++          clear_timeout ();
++        }
+ 	      break;
+ 
+ 	    case GRUB_TERM_KEY_END:
+ 	    case GRUB_TERM_CTRL | 'e':
+ 	      current_entry = menu->size - 1;
+ 	      menu_set_chosen_entry (current_entry);
++        if (timeout >= 0)
++        {
++          grub_env_unset ("timeout");
++          grub_env_unset ("fallback");
++          clear_timeout ();
++        }
+ 	      break;
+ 
+ 	    case GRUB_TERM_KEY_UP:
+@@ -771,6 +776,12 @@ run_menu (grub_menu_t menu, int nested, int *auto_boot)
+ 	      if (current_entry > 0)
+ 		current_entry--;
+ 	      menu_set_chosen_entry (current_entry);
++        if (timeout >= 0)
++        {
++          grub_env_unset ("timeout");
++          grub_env_unset ("fallback");
++          clear_timeout ();
++        }
+ 	      break;
+ 
+ 	    case GRUB_TERM_CTRL | 'n':
+@@ -779,6 +790,12 @@ run_menu (grub_menu_t menu, int nested, int *auto_boot)
+ 	      if (current_entry < menu->size - 1)
+ 		current_entry++;
+ 	      menu_set_chosen_entry (current_entry);
++        if (timeout >= 0)
++        {
++          grub_env_unset ("timeout");
++          grub_env_unset ("fallback");
++          clear_timeout ();
++        }
+ 	      break;
+ 
+ 	    case GRUB_TERM_CTRL | 'g':
+@@ -788,6 +805,12 @@ run_menu (grub_menu_t menu, int nested, int *auto_boot)
+ 	      else
+ 		current_entry -= GRUB_MENU_PAGE_SIZE;
+ 	      menu_set_chosen_entry (current_entry);
++        if (timeout >= 0)
++        {
++          grub_env_unset ("timeout");
++          grub_env_unset ("fallback");
++          clear_timeout ();
++        }
+ 	      break;
+ 
+ 	    case GRUB_TERM_CTRL | 'c':
+@@ -797,6 +820,12 @@ run_menu (grub_menu_t menu, int nested, int *auto_boot)
+ 	      else
+ 		current_entry = menu->size - 1;
+ 	      menu_set_chosen_entry (current_entry);
++        if (timeout >= 0)
++        {
++          grub_env_unset ("timeout");
++          grub_env_unset ("fallback");
++          clear_timeout ();
++        }
+ 	      break;
+ 
+ 	    case '\n':
+-- 
+2.43.0
+

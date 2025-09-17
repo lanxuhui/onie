@@ -97,3 +97,4 @@ deviceiter-overflow.patch
 is_sb_enabled_command.patch
 mdraid1x-linux-gcc-10.patch
 zfs-gcc-10.patch
+0001-Grub-only-some-specific-key-combination-can-interrup.patch
